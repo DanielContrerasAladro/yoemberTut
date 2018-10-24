@@ -14,7 +14,7 @@ export default DS.Model.extend({
     this.set('author', author);
     this.set('releaseYear', this._randomYear());
     this.set('library', library);
-
+		
     return this;
   },
 
