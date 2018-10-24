@@ -55,7 +55,9 @@ export default Controller.extend({
       for (let i = 0; i < counter; i++) {
 
         // Collect Promises in an array.
-        const books = this._saveRandomAuthor().then(newAuthor => this._generateSomeBooks(newAuthor));
+        const books = this._saveRandomAuthor().then(newAuthor => {
+					this._generateSomeBooks(newAuthor);
+				});
         booksWithAuthors.push(books);
       }
 
@@ -104,7 +106,7 @@ export default Controller.extend({
   },
 
   _generateSomeBooks(author) {
-    const bookCounter = Faker.random.number(10);
+    const bookCounter = Faker.random.number(2);
     let books = [];
 
     for (let j = 0; j < bookCounter; j++) {
@@ -119,7 +121,9 @@ export default Controller.extend({
 
           // guard library in case if we don't have any
           .then(() => library && library.save());
-      books.push(bookPromise)
+
+      books.push(bookPromise);
+
     }
 
     // Return a Promise, so we can manage the whole process on time
